@@ -39,7 +39,7 @@ outputs:
         - {{ compiler('cxx') }}
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
-    host:
+      host:
         - libestools
     test:
       commands:

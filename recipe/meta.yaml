@@ -12,7 +12,7 @@ source:
 build:
   run_exports:
     - {{ pin_subpackage('festival', max_pin='x.x') }}
-  skip: True  # [win]
+  skip: True  # [not linux]
   number: 1
 
 requirements:

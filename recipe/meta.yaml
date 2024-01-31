@@ -13,14 +13,15 @@ build:
   run_exports:
     - {{ pin_subpackage('festival', max_pin='x.x') }}
   skip: True  # [not linux]
-  number: 0
+  number: 1
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make
-    - libgomp
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux]
     - libestools-dev  #  This package provides Make includes needed for buildsystem
     - libestools-static  # This is needed to satisfy Make, but not used
   host:
@@ -36,7 +37,8 @@ outputs:
       build:  # This output doesn't build anything, but DSO link checks need these compiler tools to be present.
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - libgomp
+        - llvm-openmp  # [osx]
+        - libgomp      # [linux]
       host:
         - libestools
     test:
